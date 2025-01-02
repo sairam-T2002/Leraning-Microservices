@@ -1,1 +1,32 @@
-{"Routes":[{"DownstreamPathTemplate":"/api/booking","DownstreamScheme":"https","DownstreamHostAndPorts":[{"Host":"localhost","Port":7181}],"UpstreamPathTemplate":"/gateway/booking","UpstreamHttpMethod":["GET"]},{"DownstreamPathTemplate":"/api/cancellation","DownstreamScheme":"https","DownstreamHostAndPorts":[{"Host":"localhost","Port":7130}],"UpstreamPathTemplate":"/gateway/cancellation","UpstreamHttpMethod":["GET"]}]}
+{
+  "Routes": [
+    {
+      "Name": "Booking Service",
+      "Summary": "Get booking information",
+      "DownstreamPathTemplate": "/api/booking",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7181
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/booking",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "Name": "Cancellation Service",
+      "Summary": "Get cancellation information",
+      "DownstreamPathTemplate": "/api/cancellation",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7130
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/cancellation",
+      "UpstreamHttpMethod": [ "GET" ]
+    }
+  ]
+}
