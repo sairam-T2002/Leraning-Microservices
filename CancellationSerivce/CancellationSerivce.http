@@ -1,0 +1,6 @@
+@CancellationSerivce_HostAddress = http://localhost:5271
+
+GET {{CancellationSerivce_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

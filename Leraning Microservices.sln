@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35527.113 d17.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "microservices", "microservices", "{A3F8F1D4-9056-48DE-BEEA-3D642B531F5B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookingService", "BookingService\BookingService.csproj", "{DED321A7-0238-418F-83CC-1365913F26AB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CancellationSerivce", "CancellationSerivce\CancellationSerivce.csproj", "{34A72A29-F9B6-4825-BECD-0912C0C48E94}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gateway", "Gateway\Gateway.csproj", "{4B0DECF3-E24C-4522-9033-577929243816}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DED321A7-0238-418F-83CC-1365913F26AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DED321A7-0238-418F-83CC-1365913F26AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DED321A7-0238-418F-83CC-1365913F26AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DED321A7-0238-418F-83CC-1365913F26AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{34A72A29-F9B6-4825-BECD-0912C0C48E94}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34A72A29-F9B6-4825-BECD-0912C0C48E94}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34A72A29-F9B6-4825-BECD-0912C0C48E94}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34A72A29-F9B6-4825-BECD-0912C0C48E94}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4B0DECF3-E24C-4522-9033-577929243816}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B0DECF3-E24C-4522-9033-577929243816}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B0DECF3-E24C-4522-9033-577929243816}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B0DECF3-E24C-4522-9033-577929243816}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{DED321A7-0238-418F-83CC-1365913F26AB} = {A3F8F1D4-9056-48DE-BEEA-3D642B531F5B}
+		{34A72A29-F9B6-4825-BECD-0912C0C48E94} = {A3F8F1D4-9056-48DE-BEEA-3D642B531F5B}
+	EndGlobalSection
+EndGlobal
