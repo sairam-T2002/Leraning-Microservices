@@ -1,5 +1,6 @@
 ﻿using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
+using System.Text.Json;
 
 namespace Gateway;
 
@@ -9,40 +10,54 @@ public class SwaggerDocumentFilter : IDocumentFilter
     {
         var paths = new OpenApiPaths();
 
-        // Booking Service
-        paths.Add("/gateway/booking", new OpenApiPathItem
-        {
-            Operations = new Dictionary<OperationType, OpenApiOperation>
-            {
-                [OperationType.Get] = new OpenApiOperation
-                {
-                    Tags = new List<OpenApiTag> { new OpenApiTag { Name = "Booking Service" } },
-                    Summary = "Get booking information",
-                    Responses = new OpenApiResponses
-                    {
-                        ["200"] = new OpenApiResponse { Description = "Successful response" }
-                    }
-                }
-            }
-        });
+        // Load Ocelot configuration from ocelot.json
+        var ocelotConfig = LoadOcelotConfig();
 
-        // Cancellation Service
-        paths.Add("/gateway/cancellation", new OpenApiPathItem
+        foreach (var route in ocelotConfig.Routes)
         {
-            Operations = new Dictionary<OperationType, OpenApiOperation>
+            paths.Add(route.UpstreamPathTemplate, new OpenApiPathItem
             {
-                [OperationType.Get] = new OpenApiOperation
+                Operations = new Dictionary<OperationType, OpenApiOperation>
                 {
-                    Tags = new List<OpenApiTag> { new OpenApiTag { Name = "Cancellation Service" } },
-                    Summary = "Get cancellation information",
-                    Responses = new OpenApiResponses
+                    [GetOperationType(route.UpstreamHttpMethod)] = new OpenApiOperation
                     {
-                        ["200"] = new OpenApiResponse { Description = "Successful response" }
+                        Tags = new List<OpenApiTag> { new OpenApiTag { Name = route.Name } },
+                        Summary = route.Summary,
+                        Responses = new OpenApiResponses
+                        {
+                            ["200"] = new OpenApiResponse { Description = "Successful response" }
+                        }
                     }
                 }
-            }
-        });
+            });
+        }
 
         swaggerDoc.Paths = paths;
     }
+
+    private static OcelotConfiguration LoadOcelotConfig()
+    {
+        var configPath = Path.Combine(AppContext.BaseDirectory, "ocelot.json");
+        var json = File.ReadAllText(configPath);
+        return JsonSerializer.Deserialize<OcelotConfiguration>(json)!;
+    }
+
+    private static OperationType GetOperationType( List<string> methods )
+    {
+        // Currently handling only GET, can be extended for other HTTP methods
+        return methods.Contains("GET") ? OperationType.Get : OperationType.Get;
+    }
+}
+
+public class OcelotConfiguration
+{
+    public List<OcelotRoute> Routes { get; set; } = new List<OcelotRoute>();
+}
+
+public class OcelotRoute
+{
+    public string Name { get; set; } = string.Empty;
+    public string Summary { get; set; } = string.Empty;
+    public string UpstreamPathTemplate { get; set; } = string.Empty;
+    public List<string> UpstreamHttpMethod { get; set; } = new List<string>();
 }
